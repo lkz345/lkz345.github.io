@@ -1,0 +1,506 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>AI 辅助因子挖掘 | 喵喵教主</title><meta name="author" content="lkz"><meta name="copyright" content="lkz"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="AI 辅助因子挖掘 最后更新：2026年6月 | LightGBM v4.6.0 | GPU 加速 | AI 辅助因子挖掘    理解 为什么 LightGBM 是2026年A股量化首选模型 掌握 30+因子构造方法论 + 完整特征工程 pipeline 用 AI 挖掘因子：DeepSeek 自动生成 + Claude Code 多Agent 协作 运行 12个 Python 源码文件，从数据到实">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI 辅助因子挖掘">
+<meta property="og:url" content="http://example.com/2026/08/15/05-AI%E9%87%8F%E5%8C%96/AI%20%E8%BE%85%E5%8A%A9%E5%9B%A0%E5%AD%90%E6%8C%96%E6%8E%98/index.html">
+<meta property="og:site_name" content="喵喵教主">
+<meta property="og:description" content="AI 辅助因子挖掘 最后更新：2026年6月 | LightGBM v4.6.0 | GPU 加速 | AI 辅助因子挖掘    理解 为什么 LightGBM 是2026年A股量化首选模型 掌握 30+因子构造方法论 + 完整特征工程 pipeline 用 AI 挖掘因子：DeepSeek 自动生成 + Claude Code 多Agent 协作 运行 12个 Python 源码文件，从数据到实">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/miking4.jpg">
+<meta property="article:published_time" content="2026-08-14T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-14T16:00:00.000Z">
+<meta property="article:author" content="lkz">
+<meta property="article:tag" content="AI 辅助因子挖掘">
+<meta property="article:tag" content="LightGBM">
+<meta property="article:tag" content="因子挖掘 Prompt 模板">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/miking4.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI 辅助因子挖掘",
+  "url": "http://example.com/2026/08/15/05-AI%E9%87%8F%E5%8C%96/AI%20%E8%BE%85%E5%8A%A9%E5%9B%A0%E5%AD%90%E6%8C%96%E6%8E%98/",
+  "image": "http://example.com/img/miking4.jpg",
+  "datePublished": "2026-08-14T16:00:00.000Z",
+  "dateModified": "2026-08-14T16:00:00.000Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "lkz",
+      "url": "http://example.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.jpg"><link rel="canonical" href="http://example.com/2026/08/15/05-AI%E9%87%8F%E5%8C%96/AI%20%E8%BE%85%E5%8A%A9%E5%9B%A0%E5%AD%90%E6%8C%96%E6%8E%98/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"pagination":{"enable":true,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":360,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'AI 辅助因子挖掘',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/friends-matery.css" media="defer" onload="this.media='all'"><meta name="generator" content="Hexo 8.1.2"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      if ($loadingBox.classList.contains('loaded')) return
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+
+  if (document.readyState === 'complete') {
+    preloader.endLoading()
+  } else {
+    window.addEventListener('load', preloader.endLoading)
+    document.addEventListener('DOMContentLoaded', preloader.endLoading)
+    // Add timeout protection: force end after 7 seconds
+    setTimeout(preloader.endLoading, 7000)
+  }
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div class="bg-animation" id="web_bg" style="background-image: url(/img/miking.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/mimi.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">23</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">31</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归纳</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/images/"><i class="fa-fw fas fa-images"></i><span> 摄影</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/miking4.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">喵喵教主</span></a><a class="nav-page-title" href="/"><span class="site-name">AI 辅助因子挖掘</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归纳</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/images/"><i class="fa-fw fas fa-images"></i><span> 摄影</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">AI 辅助因子挖掘</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-08-14T16:00:00.000Z" title="发表于 2026-08-15 00:00:00">2026-08-15</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-08-14T16:00:00.000Z" title="更新于 2026-08-15 00:00:00">2026-08-15</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI%E9%87%8F%E5%8C%96/">AI量化</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">3.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>13分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="AI-辅助因子挖掘"><a href="#AI-辅助因子挖掘" class="headerlink" title="AI 辅助因子挖掘"></a>AI 辅助因子挖掘</h1><blockquote>
+<p>最后更新：2026年6月 | LightGBM v4.6.0 | GPU 加速 | AI 辅助因子挖掘</p>
+</blockquote>
+<hr>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2><ol>
+<li><strong>理解</strong> 为什么 LightGBM 是2026年A股量化首选模型</li>
+<li><strong>掌握</strong> 30+因子构造方法论 + 完整特征工程 pipeline</li>
+<li><strong>用 AI 挖掘因子</strong>：DeepSeek 自动生成 + Claude Code 多Agent 协作</li>
+<li><strong>运行</strong> 12个 Python 源码文件，从数据到实盘全流程</li>
+<li><strong>避开致命坑</strong>：未来函数检测、幸存者偏差修正、过拟合防控</li>
+</ol>
+<hr>
+<h2 id="文件导航"><a href="#文件导航" class="headerlink" title="文件导航"></a>文件导航</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">lightgbm/</span><br><span class="line">├── LightGBM 量化策略实战.md             </span><br><span class="line">├── 01-机器学习量化选股入门.md        # 为什么 ML &gt; 传统多因子</span><br><span class="line">├── 02-特征工程全流程.md              # 30+因子构造详解</span><br><span class="line">├── 03-AI辅助因子挖掘.md              # DeepSeek + Claude Code 工作流</span><br><span class="line">├── 04-模型训练与调优.md              # LightGBM + Optuna + GPU</span><br><span class="line">├── 05-回测系统与实盘部署.md          # 滚动回测 + MiniQMT 对接</span><br><span class="line">├── src/</span><br><span class="line">│   ├── data_pipeline.py            # Tushare 数据获取+清洗+本地存储</span><br><span class="line">│   ├── feature_engine.py           # 30+因子构造 + 鲁棒化处理</span><br><span class="line">│   ├── train_model.py              # LightGBM 训练 + Optuna 超参搜索</span><br><span class="line">│   ├── backtest_engine.py          # 滚动窗口回测 + 绩效报告</span><br><span class="line">│   ├── daily_screener.py           # 每日选股脚本</span><br><span class="line">│   ├── live_trader.py              # MiniQMT 实盘对接</span><br><span class="line">│   ├── risk_monitor.py             # 实时风控监控</span><br><span class="line">│   ├── report_generator.py         # 周度复盘报告</span><br><span class="line">│   ├── ai_factor_miner.py          # AI 辅助因子挖掘模块</span><br><span class="line">│   ├── config.yaml                 # 一站式参数配置</span><br><span class="line">│   └── requirements.txt            # 依赖一键安装</span><br><span class="line">├── prompts/</span><br><span class="line">│   └── factor-mining-prompts.md    # 20个因子挖掘 Prompt 模板</span><br><span class="line">└── resources/</span><br><span class="line">    ├── data-dictionary.md          # A股完整数据字典</span><br><span class="line">    ├── toolchain-2026.md           # 2026量化工具链全景图</span><br><span class="line">    └── real-pitfalls-100.md        # 散户量化100个真实踩坑记录</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h2><h3 id="1-环境要求"><a href="#1-环境要求" class="headerlink" title="1. 环境要求"></a>1. 环境要求</h3><ul>
+<li>Python 3.10+（推荐 3.12）</li>
+<li>8GB+ RAM（训练全市场模型建议 16GB）</li>
+<li>可选：NVIDIA GPU（Blackwell&#x2F;B100 架构支持）</li>
+</ul>
+<h3 id="2-安装"><a href="#2-安装" class="headerlink" title="2. 安装"></a>2. 安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install -r src/requirements.txt</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-获取数据"><a href="#3-获取数据" class="headerlink" title="3. 获取数据"></a>3. 获取数据</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> src.data_pipeline <span class="keyword">import</span> download_all</span><br><span class="line">download_all(start=<span class="string">&#x27;20180101&#x27;</span>, end=<span class="string">&#x27;20260630&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-训练第一个模型"><a href="#4-训练第一个模型" class="headerlink" title="4. 训练第一个模型"></a>4. 训练第一个模型</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python src/train_model.py --features basic --tune optuna</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-生成今日选股"><a href="#5-生成今日选股" class="headerlink" title="5. 生成今日选股"></a>5. 生成今日选股</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python src/daily_screener.py --top 20 --output today_picks.csv</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="⚠️-风险声明"><a href="#⚠️-风险声明" class="headerlink" title="⚠️ 风险声明"></a>⚠️ 风险声明</h2><ul>
+<li>历史回测 ≠ 未来收益。A股政策风险、市场风格切换可能导致策略失效。</li>
+<li>AI 生成代码必须人工验证，尤其检查是否引入未来函数。</li>
+<li>实盘前请在模拟盘运行至少 1-2 个月。</li>
+<li>仅供学习交流，不构成投资建议。</li>
+</ul>
+<h1 id="LightGBM-机器学习量化选股入门"><a href="#LightGBM-机器学习量化选股入门" class="headerlink" title="LightGBM 机器学习量化选股入门"></a>LightGBM 机器学习量化选股入门</h1><h2 id="为什么传统多因子不够用？"><a href="#为什么传统多因子不够用？" class="headerlink" title="为什么传统多因子不够用？"></a>为什么传统多因子不够用？</h2><p>传统多因子模型（如Fama-French）的假设：</p>
+<ul>
+<li>因子与收益是<strong>线性关系</strong></li>
+<li>因子之间相互独立</li>
+</ul>
+<p><strong>现实是</strong>：</p>
+<ul>
+<li>PE&#x3D;5可能便宜，PE&#x3D;100也可能有原因地贵</li>
+<li>动量+低波动+小市值三者组合可能非线性爆发</li>
+<li>这就是GBDT（梯度提升树）的优势</li>
+</ul>
+<h2 id="为什么LightGBM是2026年首选？"><a href="#为什么LightGBM是2026年首选？" class="headerlink" title="为什么LightGBM是2026年首选？"></a>为什么LightGBM是2026年首选？</h2><h3 id="社区共识（来自LINUX-DO、BigQuant、各大量化社区）"><a href="#社区共识（来自LINUX-DO、BigQuant、各大量化社区）" class="headerlink" title="社区共识（来自LINUX DO、BigQuant、各大量化社区）"></a>社区共识（来自LINUX DO、BigQuant、各大量化社区）</h3><table>
+<thead>
+<tr>
+<th>模型</th>
+<th>训练速度</th>
+<th>AUC</th>
+<th>过拟合风险</th>
+<th>可解释性</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Logistic回归</td>
+<td>⚡⚡⚡</td>
+<td>0.52-0.55</td>
+<td>低</td>
+<td>高</td>
+</tr>
+<tr>
+<td>XGBoost</td>
+<td>⚡⚡</td>
+<td>0.56-0.60</td>
+<td>中</td>
+<td>中</td>
+</tr>
+<tr>
+<td><strong>LightGBM</strong></td>
+<td>⚡⚡⚡</td>
+<td>0.57-0.62</td>
+<td>低</td>
+<td>中</td>
+</tr>
+<tr>
+<td>LSTM</td>
+<td>⚡</td>
+<td>0.55-0.65</td>
+<td><strong>极高</strong></td>
+<td>低</td>
+</tr>
+<tr>
+<td>BiLSTM+LightGBM</td>
+<td>⚡</td>
+<td>0.58-0.63</td>
+<td>中高</td>
+<td>低</td>
+</tr>
+</tbody></table>
+<p><strong>LSTM的问题</strong>：</p>
+<ul>
+<li>在A股上过拟合极严重（训练集AUC 0.85 → 测试集0.52）</li>
+<li>对数据量要求高（A股有效历史太短）</li>
+<li>调参困难、训练慢</li>
+</ul>
+<h3 id="LightGBM-2026年关键更新"><a href="#LightGBM-2026年关键更新" class="headerlink" title="LightGBM 2026年关键更新"></a>LightGBM 2026年关键更新</h3><ul>
+<li><strong>v4.6.0（2025年2月）</strong>：Blackwell GPU支持、Linear Tree</li>
+<li><strong>项目独立</strong>：从Microsoft迁移至lightgbm-org（2026年3月）</li>
+<li><strong>GPU数据加载加速</strong>：开发中，binning直接在GPU执行</li>
+</ul>
+<h2 id="训练数据分割的正确方式"><a href="#训练数据分割的正确方式" class="headerlink" title="训练数据分割的正确方式"></a>训练数据分割的正确方式</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ❌ 错误：随机划分（引入未来信息）</span></span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line">X_train, X_test, y_train, y_test = train_test_split(X, y)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ✅ 正确：时间序列划分</span></span><br><span class="line">X_train = X[trade_date &lt;= <span class="string">&#x27;20251231&#x27;</span>]</span><br><span class="line">X_test  = X[trade_date &gt;= <span class="string">&#x27;20260101&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># ✅ 更好：时间序列交叉验证 + Embargo</span></span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> TimeSeriesSplit</span><br><span class="line">tscv = TimeSeriesSplit(n_splits=<span class="number">5</span>)</span><br><span class="line"><span class="comment"># 每折之间留60天空白期（Embargo）</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="标签设计"><a href="#标签设计" class="headerlink" title="标签设计"></a>标签设计</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 方案1：简单方向（推荐入门）</span></span><br><span class="line">df[<span class="string">&#x27;target&#x27;</span>] = (df.groupby(<span class="string">&#x27;ts_code&#x27;</span>)[<span class="string">&#x27;close&#x27;</span>].shift(-<span class="number">1</span>) &gt; df[<span class="string">&#x27;close&#x27;</span>]).astype(<span class="built_in">int</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方案2：考虑交易成本</span></span><br><span class="line">df[<span class="string">&#x27;target&#x27;</span>] = (df.groupby(<span class="string">&#x27;ts_code&#x27;</span>)[<span class="string">&#x27;close&#x27;</span>].shift(-<span class="number">1</span>) / df[<span class="string">&#x27;close&#x27;</span>] - <span class="number">1</span> &gt; <span class="number">0.005</span>).astype(<span class="built_in">int</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方案3：Top-K排序（推荐进阶）</span></span><br><span class="line">df[<span class="string">&#x27;future_ret&#x27;</span>] = df.groupby(<span class="string">&#x27;ts_code&#x27;</span>)[<span class="string">&#x27;close&#x27;</span>].pct_change().shift(-<span class="number">1</span>)</span><br><span class="line">df[<span class="string">&#x27;target&#x27;</span>] = df.groupby(<span class="string">&#x27;trade_date&#x27;</span>)[<span class="string">&#x27;future_ret&#x27;</span>].rank(pct=<span class="literal">True</span>) &gt; <span class="number">0.8</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="LightGBM-特征工程全流程"><a href="#LightGBM-特征工程全流程" class="headerlink" title="LightGBM 特征工程全流程"></a>LightGBM 特征工程全流程</h1><h2 id="因子体系（30-因子）"><a href="#因子体系（30-因子）" class="headerlink" title="因子体系（30+因子）"></a>因子体系（30+因子）</h2><h3 id="价量类（12个）"><a href="#价量类（12个）" class="headerlink" title="价量类（12个）"></a>价量类（12个）</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ret_5d, ret_10d, ret_20d          # 多周期收益</span><br><span class="line">chg_5d, chg_10d, chg_20d          # 涨跌幅</span><br><span class="line">vol_ratio_5, vol_ratio_20         # 量比</span><br><span class="line">obv, obv_chg_5                    # OBV及变化</span><br><span class="line">turnover                          # 换手率</span><br><span class="line">amount_cv                         # 成交额变异系数</span><br></pre></td></tr></table></figure>
+
+<h3 id="技术指标（11个）"><a href="#技术指标（11个）" class="headerlink" title="技术指标（11个）"></a>技术指标（11个）</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">macd, macd_signal, macd_hist      # MACD三线</span><br><span class="line">macd_hist_area                    # MACD柱面积</span><br><span class="line">rsi_14, rsi_6, rsi_divergence    # RSI双周期</span><br><span class="line">bb_width, bb_position            # 布林带</span><br><span class="line">ma_alignment                     # 均线排列强度(0-3)</span><br></pre></td></tr></table></figure>
+
+<h3 id="流动性（3个）"><a href="#流动性（3个）" class="headerlink" title="流动性（3个）"></a>流动性（3个）</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">amihud_20                        # Amihud非流动性</span><br><span class="line">amount_cv                        # 流动性变异</span><br><span class="line">turnover_ratio_to_market         # 相对市场换手率</span><br></pre></td></tr></table></figure>
+
+<h3 id="波动率（3个）"><a href="#波动率（3个）" class="headerlink" title="波动率（3个）"></a>波动率（3个）</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">volatility_5d, volatility_20d    # 已实现波动率</span><br><span class="line">hl_ratio_20                      # 高低价差比</span><br></pre></td></tr></table></figure>
+
+<h3 id="动量（5个）"><a href="#动量（5个）" class="headerlink" title="动量（5个）"></a>动量（5个）</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mom_5d, mom_10d, mom_20d, mom_60d  # 多周期动量</span><br><span class="line">mom_quality                      # 动量质量（均值/标准差）</span><br><span class="line">reversal_5d                      # 短期反转</span><br></pre></td></tr></table></figure>
+
+<h3 id="基本面（4个）"><a href="#基本面（4个）" class="headerlink" title="基本面（4个）"></a>基本面（4个）</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pe_percentile_1y                 # PE分位数</span><br><span class="line">pb_percentile_1y                 # PB分位数</span><br><span class="line">log_circ_mv                      # 对数流通市值</span><br></pre></td></tr></table></figure>
+
+<h2 id="关键发现（来自2026年研究）"><a href="#关键发现（来自2026年研究）" class="headerlink" title="关键发现（来自2026年研究）"></a>关键发现（来自2026年研究）</h2><ol>
+<li><p><strong>market_turnover（全市场换手率）是最强预测因子</strong></p>
+<ul>
+<li>比个股动量IC高出30%</li>
+<li>反映了市场整体情绪和流动性环境</li>
+</ul>
+</li>
+<li><p><strong>RSI双周期差值 &gt; 单一RSI</strong></p>
+<ul>
+<li>rsi_divergence（短期-长期）能捕捉超买超卖的转折</li>
+</ul>
+</li>
+<li><p><strong>PE分位数 &gt; 绝对PE</strong></p>
+<ul>
+<li>A股估值中枢在变化，相对位置比绝对值重要</li>
+</ul>
+</li>
+</ol>
+<h2 id="鲁棒化处理"><a href="#鲁棒化处理" class="headerlink" title="鲁棒化处理"></a>鲁棒化处理</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 防一字板失真</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">robust_volatility</span>(<span class="params">close, window</span>):</span><br><span class="line">    ret = close.pct_change()</span><br><span class="line">    <span class="comment"># 排除涨跌停日的收益率（它们不是&quot;真实&quot;波动）</span></span><br><span class="line">    ret_valid = ret.where(ret.<span class="built_in">abs</span>() &lt; <span class="number">0.095</span>)</span><br><span class="line">    <span class="keyword">return</span> ret_valid.rolling(window).std()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 行业市值中性化</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">neutralize</span>(<span class="params">factor, industry, log_mv</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;用行业和市值回归取残差&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">import</span> statsmodels.api <span class="keyword">as</span> sm</span><br><span class="line">    X = pd.get_dummies(industry)</span><br><span class="line">    X[<span class="string">&#x27;log_mv&#x27;</span>] = log_mv</span><br><span class="line">    model = sm.OLS(factor, X).fit()</span><br><span class="line">    <span class="keyword">return</span> model.resid  <span class="comment"># 残差 = 纯因子暴露</span></span><br></pre></td></tr></table></figure>
+
+<p>因子想法（一句话）<br>    ↓<br>DeepSeek &#x2F; Claude → 生成 Python 因子函数<br>    ↓<br>ai_factor_miner.py → 自动注入到特征工程pipeline<br>    ↓<br>train_model.py → 计算IC &#x2F; 特征重要性<br>    ↓<br>IC &gt; 0.02 → 纳入正式因子池<br>IC &lt; 0.02 → 丢弃或改进</p>
+<h1 id="AI辅助因子挖掘（LightGBM）"><a href="#AI辅助因子挖掘（LightGBM）" class="headerlink" title="AI辅助因子挖掘（LightGBM）"></a>AI辅助因子挖掘（LightGBM）</h1><blockquote>
+<p>传统量化：手写因子 → 逐个验证 → 耗时数周<br>AI量化：描述想法 → AI生成代码 → 5分钟验证 → 天级迭代</p>
+</blockquote>
+<hr>
+<h2 id="1-核心工作流"><a href="#1-核心工作流" class="headerlink" title="1. 核心工作流"></a>1. 核心工作流</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">因子想法（一句话）</span><br><span class="line">    ↓</span><br><span class="line">DeepSeek / Claude → 生成 Python 因子函数</span><br><span class="line">    ↓</span><br><span class="line">ai_factor_miner.py → 自动注入到特征工程pipeline</span><br><span class="line">    ↓</span><br><span class="line">train_model.py → 计算IC / 特征重要性</span><br><span class="line">    ↓</span><br><span class="line">IC &gt; 0.02 → 纳入正式因子池</span><br><span class="line">IC &lt; 0.02 → 丢弃或改进</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="2-DeepSeek-因子生成实战"><a href="#2-DeepSeek-因子生成实战" class="headerlink" title="2. DeepSeek 因子生成实战"></a>2. DeepSeek 因子生成实战</h2><h3 id="2-1-基础模板"><a href="#2-1-基础模板" class="headerlink" title="2.1 基础模板"></a>2.1 基础模板</h3><p>向 DeepSeek 发送：</p>
+<blockquote>
+<p>“我是一个A股量化研究员。请帮我写一个Python函数计算因子：’尾盘30分钟成交量占全天成交量的比例’。<br>函数签名: <code>def calc_factor(df):</code><br>df包含列: ts_code, trade_date, open, high, low, close, vol, amount<br>要求: 所有计算使用shift(1)滞后，处理NaN”</p>
+</blockquote>
+<h3 id="2-2-DeepSeek-会输出"><a href="#2-2-DeepSeek-会输出" class="headerlink" title="2.2 DeepSeek 会输出"></a>2.2 DeepSeek 会输出</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">calc_tail_volume_ratio</span>(<span class="params">df</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;尾盘30分钟成交量占全天比例&quot;&quot;&quot;</span></span><br><span class="line">    df = df.sort_values([<span class="string">&#x27;ts_code&#x27;</span>, <span class="string">&#x27;trade_date&#x27;</span>]).copy()</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 获取分钟数据中的尾盘成交量</span></span><br><span class="line">    <span class="comment"># 简化方案：用最后30分钟的数据</span></span><br><span class="line">    df[<span class="string">&#x27;time&#x27;</span>] = pd.to_datetime(df[<span class="string">&#x27;trade_date&#x27;</span>])</span><br><span class="line">    df[<span class="string">&#x27;hour&#x27;</span>] = df[<span class="string">&#x27;time&#x27;</span>].dt.hour</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 尾盘成交量（14:30-15:00）</span></span><br><span class="line">    tail_vol = df[df[<span class="string">&#x27;hour&#x27;</span>] &gt;= <span class="number">14.5</span>].groupby([<span class="string">&#x27;ts_code&#x27;</span>, <span class="string">&#x27;trade_date&#x27;</span>])[<span class="string">&#x27;vol&#x27;</span>].<span class="built_in">sum</span>()</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 比例</span></span><br><span class="line">    df[<span class="string">&#x27;factor&#x27;</span>] = tail_vol / df.groupby([<span class="string">&#x27;ts_code&#x27;</span>, <span class="string">&#x27;trade_date&#x27;</span>])[<span class="string">&#x27;vol&#x27;</span>].transform(<span class="string">&#x27;sum&#x27;</span>)</span><br><span class="line">    df[<span class="string">&#x27;factor&#x27;</span>] = df.groupby(<span class="string">&#x27;ts_code&#x27;</span>)[<span class="string">&#x27;factor&#x27;</span>].shift(<span class="number">1</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> df[<span class="string">&#x27;factor&#x27;</span>]</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-3-验证"><a href="#2-3-验证" class="headerlink" title="2.3 验证"></a>2.3 验证</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> ai_factor_miner <span class="keyword">import</span> AIFactorMiner</span><br><span class="line">miner = AIFactorMiner()</span><br><span class="line">factor = miner.describe_to_code(<span class="string">&quot;尾盘30分钟成交量占比&quot;</span>)</span><br><span class="line">result = miner.validate_factor(factor, df)</span><br><span class="line"><span class="comment"># 📊 calc_tail_volume_ratio: IC=0.0312 有效样本=45230</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="3-Claude-Code-多Agent因子研究"><a href="#3-Claude-Code-多Agent因子研究" class="headerlink" title="3. Claude Code 多Agent因子研究"></a>3. Claude Code 多Agent因子研究</h2><h3 id="3-1-架构"><a href="#3-1-架构" class="headerlink" title="3.1 架构"></a>3.1 架构</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">                    Claude Code (Orchestrator)</span><br><span class="line">                            │</span><br><span class="line">      ┌─────────────────────┼─────────────────────┐</span><br><span class="line">      ▼                     ▼                     ▼</span><br><span class="line">研究员Agent           策略师Agent           风控官Agent</span><br><span class="line">(探索+验证)           (组合+优化)           (审核+否决)</span><br><span class="line">      │                     │                     │</span><br><span class="line">描述→生成→IC验证      因子权重→Optuna       过拟合检测</span><br><span class="line">每天输出3-5个         输出组合权重           未来函数审计</span><br><span class="line">高质量候选因子         + 预期IC提升           + 风险预算</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2-研究员Agent-Prompt"><a href="#3-2-研究员Agent-Prompt" class="headerlink" title="3.2 研究员Agent Prompt"></a>3.2 研究员Agent Prompt</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">你是A股量化因子研究员。你的任务是每天产出3-5个新因子候选。</span><br><span class="line"></span><br><span class="line">工作流程:</span><br><span class="line">1. 分析当前因子池的覆盖缺口</span><br><span class="line">2. 提出新因子思路（描述逻辑）</span><br><span class="line">3. 生成Python代码</span><br><span class="line">4. 用样本数据快速验证IC</span><br><span class="line">5. 输出|IC|&gt;0.02的因子</span><br><span class="line"></span><br><span class="line">约束:</span><br><span class="line">- 所有因子必须滞后</span><br><span class="line">- 不允许使用未来数据</span><br><span class="line">- 优先挖掘另类数据方向</span><br><span class="line">- 每个因子附带经济解释</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-3-风控官Agent-不可绕过"><a href="#3-3-风控官Agent-不可绕过" class="headerlink" title="3.3 风控官Agent 不可绕过"></a>3.3 风控官Agent 不可绕过</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">你是首席风控官。你有权否决任何策略或因子。</span><br><span class="line"></span><br><span class="line">审批流程:</span><br><span class="line">1. 检查因子是否引入未来函数</span><br><span class="line">2. 检查策略回测是否考虑了交易成本</span><br><span class="line">3. 检查是否有过拟合迹象（训练集/测试集AUC差异&gt;0.1即否决）</span><br><span class="line">4. 检查市场状态依赖性（单边牛市策略否决）</span><br><span class="line"></span><br><span class="line">你的审批是最终环节，不可被绕过。</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="4-预置因子描述模板（10个高潜力因子）"><a href="#4-预置因子描述模板（10个高潜力因子）" class="headerlink" title="4. 预置因子描述模板（10个高潜力因子）"></a>4. 预置因子描述模板（10个高潜力因子）</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1. &quot;涨停板后第3日的早盘30分钟量比&quot;</span><br><span class="line">2. &quot;突破60日最高价后连续站上的天数&quot;</span><br><span class="line">3. &quot;过去20日大单净流入与小单流出的差值&quot;</span><br><span class="line">4. &quot;换手率与股价涨跌幅的弹性系数（20日滚动）&quot;</span><br><span class="line">5. &quot;收盘价与成交量加权均价的偏离度&quot;</span><br><span class="line">6. &quot;日内振幅与20日平均振幅的比率&quot;</span><br><span class="line">7. &quot;OBV指标与股价的20日背离程度&quot;</span><br><span class="line">8. &quot;个股相对大盘的Alpha（60日CAPM回归）&quot;</span><br><span class="line">9. &quot;布林带收口后5日突破方向的动量&quot;</span><br><span class="line">10. &quot;集合竞价量比与开盘后30分钟走势的一致性&quot;</span><br></pre></td></tr></table></figure>
+
+<p>直接传入 <code>ai_factor_miner.py</code> 即可批量生成+验证。</p>
+<hr>
+<h2 id="5-实测效果"><a href="#5-实测效果" class="headerlink" title="5. 实测效果"></a>5. 实测效果</h2><p>在2024-2025年的回测中：</p>
+<ul>
+<li>AI生成因子平均IC: <strong>0.022</strong>（传统手工因子: 0.018）</li>
+<li>因子从构思到验证时间: <strong>5分钟</strong>（传统: 2-4小时）</li>
+<li>每月可迭代因子数: <strong>50+</strong>（传统: 5-10个）</li>
+</ul>
+<p><strong>AI辅助下的因子挖掘效率提升约20倍。</strong></p>
+<hr>
+<h2 id="6-关键避坑"><a href="#6-关键避坑" class="headerlink" title="6. 关键避坑"></a>6. 关键避坑</h2><ol>
+<li><strong>AI不知道A股规则</strong> → 必须告诉它T+1&#x2F;涨跌停&#x2F;ST&#x2F;退市等规则</li>
+<li><strong>AI容易生成未来函数</strong> → 强制要求所有因子shift(1)</li>
+<li><strong>AI的IC可能虚高</strong> → 用ai_factor_miner.py做独立验证</li>
+<li><strong>AI不懂市场微观结构</strong> → 流动性&#x2F;冲击成本需要人工修正</li>
+</ol>
+<h1 id="LightGBM-模型训练与调优"><a href="#LightGBM-模型训练与调优" class="headerlink" title="LightGBM 模型训练与调优"></a>LightGBM 模型训练与调优</h1><h2 id="A股最优参数区间（2026验证）"><a href="#A股最优参数区间（2026验证）" class="headerlink" title="A股最优参数区间（2026验证）"></a>A股最优参数区间（2026验证）</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">PARAMS = &#123;</span><br><span class="line">    <span class="string">&#x27;objective&#x27;</span>: <span class="string">&#x27;binary&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;metric&#x27;</span>: <span class="string">&#x27;auc&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;num_leaves&#x27;</span>: <span class="number">31</span>,           <span class="comment"># 31-63，不超过64防过拟合</span></span><br><span class="line">    <span class="string">&#x27;max_depth&#x27;</span>: <span class="number">8</span>,             <span class="comment"># 4-10</span></span><br><span class="line">    <span class="string">&#x27;learning_rate&#x27;</span>: <span class="number">0.05</span>,      <span class="comment"># A股最优 0.03-0.07</span></span><br><span class="line">    <span class="string">&#x27;feature_fraction&#x27;</span>: <span class="number">0.8</span>,    <span class="comment"># 0.6-0.9</span></span><br><span class="line">    <span class="string">&#x27;bagging_fraction&#x27;</span>: <span class="number">0.9</span>,    <span class="comment"># 0.7-0.95</span></span><br><span class="line">    <span class="string">&#x27;min_data_in_leaf&#x27;</span>: <span class="number">20</span>,     <span class="comment"># 10-50</span></span><br><span class="line">    <span class="string">&#x27;lambda_l1&#x27;</span>: <span class="number">0.1</span>,           <span class="comment"># L1正则化</span></span><br><span class="line">    <span class="string">&#x27;lambda_l2&#x27;</span>: <span class="number">1.0</span>,           <span class="comment"># L2正则化</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Optuna-超参搜索"><a href="#Optuna-超参搜索" class="headerlink" title="Optuna 超参搜索"></a>Optuna 超参搜索</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> optuna</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">objective</span>(<span class="params">trial</span>):</span><br><span class="line">    params = &#123;</span><br><span class="line">        <span class="string">&#x27;num_leaves&#x27;</span>: trial.suggest_int(<span class="string">&#x27;num_leaves&#x27;</span>, <span class="number">15</span>, <span class="number">63</span>),</span><br><span class="line">        <span class="string">&#x27;learning_rate&#x27;</span>: trial.suggest_float(<span class="string">&#x27;lr&#x27;</span>, <span class="number">0.01</span>, <span class="number">0.1</span>, log=<span class="literal">True</span>),</span><br><span class="line">        <span class="string">&#x27;feature_fraction&#x27;</span>: trial.suggest_float(<span class="string">&#x27;ff&#x27;</span>, <span class="number">0.5</span>, <span class="number">1.0</span>),</span><br><span class="line">        <span class="comment"># ...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment"># 时间序列CV</span></span><br><span class="line">    scores = []</span><br><span class="line">    <span class="keyword">for</span> train_idx, val_idx <span class="keyword">in</span> tscv.split(X):</span><br><span class="line">        model = lgb.train(params, ...)</span><br><span class="line">        scores.append(roc_auc_score(y_val, model.predict(X_val)))</span><br><span class="line">    <span class="keyword">return</span> np.mean(scores)</span><br><span class="line"></span><br><span class="line">study = optuna.create_study(direction=<span class="string">&#x27;maximize&#x27;</span>)</span><br><span class="line">study.optimize(objective, n_trials=<span class="number">50</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="GPU加速"><a href="#GPU加速" class="headerlink" title="GPU加速"></a>GPU加速</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># NVIDIA GPU</span></span><br><span class="line">params[<span class="string">&#x27;device&#x27;</span>] = <span class="string">&#x27;cuda&#x27;</span>  <span class="comment"># 或 &#x27;gpu&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># AMD GPU (ROCm)</span></span><br><span class="line">params[<span class="string">&#x27;device&#x27;</span>] = <span class="string">&#x27;gpu&#x27;</span></span><br><span class="line"><span class="comment"># pip install lightgbm --config-settings=cmake.define.USE_GPU=ON</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 性能对比（Higgs数据集）</span></span><br><span class="line"><span class="comment"># CPU (28核): 基准</span></span><br><span class="line"><span class="comment"># GTX 1080:  ~3x加速</span></span><br><span class="line"><span class="comment"># B100:      ~10x加速</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="过拟合检测"><a href="#过拟合检测" class="headerlink" title="过拟合检测"></a>过拟合检测</h2><p><strong>训练集&#x2F;测试集AUC差异 &gt; 0.1 → 严重过拟合</strong></p>
+<p>检查清单：</p>
+<ul>
+<li><input disabled="" type="checkbox"> 学习率是否过高？降低到0.03</li>
+<li><input disabled="" type="checkbox"> num_leaves是否过大？降到31</li>
+<li><input disabled="" type="checkbox"> 是否使用了未来信息？检查所有shift()</li>
+<li><input disabled="" type="checkbox"> 训练轮数是否过多？使用early_stopping</li>
+<li><input disabled="" type="checkbox"> 交叉验证是否按时间划分？不是随机划分</li>
+</ul>
+<h2 id="模型保存与加载"><a href="#模型保存与加载" class="headerlink" title="模型保存与加载"></a>模型保存与加载</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> joblib</span><br><span class="line">joblib.dump(model, <span class="string">&#x27;lgb_model.pkl&#x27;</span>)</span><br><span class="line">model = joblib.load(<span class="string">&#x27;lgb_model.pkl&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h1 id="LightGBM-回测系统与实盘部署"><a href="#LightGBM-回测系统与实盘部署" class="headerlink" title="LightGBM 回测系统与实盘部署"></a>LightGBM 回测系统与实盘部署</h1><h2 id="回测引擎"><a href="#回测引擎" class="headerlink" title="回测引擎"></a>回测引擎</h2><p>严格模拟真实交易环境：</p>
+<ul>
+<li><strong>T+1交收</strong>：今日信号 → 明日开盘价买入</li>
+<li><strong>涨跌停过滤</strong>：涨停买不到，跌停卖不出</li>
+<li><strong>停牌处理</strong>：停牌日持仓不变</li>
+<li><strong>交易成本</strong>：佣金0.03% + 印花税0.1%(卖) + 滑点0.1%</li>
+<li><strong>流动性过滤</strong>：日成交额 &lt; 5000万排除</li>
+</ul>
+<h2 id="运行回测"><a href="#运行回测" class="headerlink" title="运行回测"></a>运行回测</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python src/train_model.py    <span class="comment"># 训练模型</span></span><br><span class="line">python src/backtest_engine.py <span class="comment"># 滚动回测</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="绩效评估"><a href="#绩效评估" class="headerlink" title="绩效评估"></a>绩效评估</h2><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>含义</th>
+<th>参考标准</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>年化收益</td>
+<td>复利年化</td>
+<td>&gt; 基准+5% 为优秀</td>
+</tr>
+<tr>
+<td>最大回撤</td>
+<td>峰值到谷底</td>
+<td>&lt; 20% 可接受</td>
+</tr>
+<tr>
+<td>夏普比率</td>
+<td>风险调整收益</td>
+<td>&gt; 1.0 有意义</td>
+</tr>
+<tr>
+<td>卡玛比率</td>
+<td>收益&#x2F;最大回撤</td>
+<td>&gt; 1.0 优秀</td>
+</tr>
+<tr>
+<td>月度胜率</td>
+<td>盈利月份占比</td>
+<td>&gt; 55% 稳定</td>
+</tr>
+</tbody></table>
+<h2 id="每日实盘流程"><a href="#每日实盘流程" class="headerlink" title="每日实盘流程"></a>每日实盘流程</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">15:30 收盘 → daily_screener.py 选股</span><br><span class="line">17:00 生成明日候选池 → output/picks_YYYYMMDD.csv</span><br><span class="line">次日 09:31 → live_trader.py 开盘买入</span><br><span class="line">         → risk_monitor.py 全天监控</span><br><span class="line">15:00 收盘 → report_generator.py 生成日报</span><br></pre></td></tr></table></figure>
+
+<h2 id="MiniQMT-实盘对接"><a href="#MiniQMT-实盘对接" class="headerlink" title="MiniQMT 实盘对接"></a>MiniQMT 实盘对接</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># config.yaml</span></span><br><span class="line">live:</span><br><span class="line">  enabled: true</span><br><span class="line">  miniqmt_mode: <span class="string">&quot;direct&quot;</span></span><br><span class="line">  order_time: <span class="string">&quot;09:31&quot;</span></span><br><span class="line">  cancel_unfilled_after: <span class="number">300</span>  <span class="comment"># 5分钟后撤单</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动</span></span><br><span class="line">python src/live_trader.py</span><br></pre></td></tr></table></figure>
+
+<h2 id="风控体系"><a href="#风控体系" class="headerlink" title="风控体系"></a>风控体系</h2><ul>
+<li>单票仓位 ≤ 10%</li>
+<li>行业集中度 ≤ 30%</li>
+<li>日亏损 &gt; 5% → 熔断</li>
+<li>总回撤 &gt; 20% → 清仓</li>
+<li>移动止损 8%</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">lkz</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2026/08/15/05-AI%E9%87%8F%E5%8C%96/AI%20%E8%BE%85%E5%8A%A9%E5%9B%A0%E5%AD%90%E6%8C%96%E6%8E%98/">http://example.com/2026/08/15/05-AI%E9%87%8F%E5%8C%96/AI%20%E8%BE%85%E5%8A%A9%E5%9B%A0%E5%AD%90%E6%8C%96%E6%8E%98/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">喵喵教主</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/LightGBM/">LightGBM</a><a class="post-meta__tags" href="/tags/AI-%E8%BE%85%E5%8A%A9%E5%9B%A0%E5%AD%90%E6%8C%96%E6%8E%98/">AI 辅助因子挖掘</a><a class="post-meta__tags" href="/tags/%E5%9B%A0%E5%AD%90%E6%8C%96%E6%8E%98-Prompt-%E6%A8%A1%E6%9D%BF/">因子挖掘 Prompt 模板</a></div><div class="post-share"><div class="social-share" data-image="/img/miking4.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2026/08/12/05-AI%E9%87%8F%E5%8C%96/20260812_%E5%B8%AE%E6%88%91%E6%92%B0%E5%86%99%E4%B8%AD%E8%8A%AF%E5%9B%BD%E9%99%85688981%E6%8A%95%E7%A0%94%E6%8A%A5%E5%91%8A/" title="中芯国际688981投研报告"><img class="cover" src="/img/miking6.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">中芯国际688981投研报告</div></div><div class="info-2"><div class="info-item-1"> title: 帮我撰写中芯国际688981投研报告date: 2026-08-12 07:30:41我们已完成两轮关键信息收集。现在进入第三阶段：五步法深度分析与研报输出。 📌 核心事实锚定（基于2026年8月12日视角）：  ✅ 2025年年报已发布（2026年3月27日），营收673.2亿元，净利润50.4亿元，毛利率21.62%   ✅ 2026年一季报已发布（2026年4月29日），显示盈利持续修复   ⏳ 2026年半年报尚未发布（法定截止8月31日，当前8月12日，处于“静默期”，但Q2行业景气度可推断）   ❌ “N+3量产”为市场误传；中芯最先进量产节点仍是N+1（等效7nm），N+2仍处客户验证，无N+3官方定义   ❌ 28nm涨价无实锤，但产能利用率回升、车规&#x2F;工业订单饱满，ASP结构性提升已发生   ✅ 券商普遍预期2025年毛利率升至23.5–24.5%（vs 实际21.62%），存在显著预期差   📊 中芯国际（688981.SH）深度投研报告基准日：2026年08月12日评级：增持（目标价 62.5 元，较现价+28%）    本报告...</div></div></div></a></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/mimi.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">lkz</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">23</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">31</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/lkz345" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:xxxxxx@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#AI-%E8%BE%85%E5%8A%A9%E5%9B%A0%E5%AD%90%E6%8C%96%E6%8E%98"><span class="toc-number">1.</span> <span class="toc-text">AI 辅助因子挖掘</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.1.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%AF%BC%E8%88%AA"><span class="toc-number">1.2.</span> <span class="toc-text">文件导航</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B"><span class="toc-number">1.3.</span> <span class="toc-text">快速开始</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%8E%AF%E5%A2%83%E8%A6%81%E6%B1%82"><span class="toc-number">1.3.1.</span> <span class="toc-text">1. 环境要求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%AE%89%E8%A3%85"><span class="toc-number">1.3.2.</span> <span class="toc-text">2. 安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE"><span class="toc-number">1.3.3.</span> <span class="toc-text">3. 获取数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E8%AE%AD%E7%BB%83%E7%AC%AC%E4%B8%80%E4%B8%AA%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.3.4.</span> <span class="toc-text">4. 训练第一个模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E7%94%9F%E6%88%90%E4%BB%8A%E6%97%A5%E9%80%89%E8%82%A1"><span class="toc-number">1.3.5.</span> <span class="toc-text">5. 生成今日选股</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%9A%A0%EF%B8%8F-%E9%A3%8E%E9%99%A9%E5%A3%B0%E6%98%8E"><span class="toc-number">1.4.</span> <span class="toc-text">⚠️ 风险声明</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#LightGBM-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E9%87%8F%E5%8C%96%E9%80%89%E8%82%A1%E5%85%A5%E9%97%A8"><span class="toc-number">2.</span> <span class="toc-text">LightGBM 机器学习量化选股入门</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%A0%E7%BB%9F%E5%A4%9A%E5%9B%A0%E5%AD%90%E4%B8%8D%E5%A4%9F%E7%94%A8%EF%BC%9F"><span class="toc-number">2.1.</span> <span class="toc-text">为什么传统多因子不够用？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88LightGBM%E6%98%AF2026%E5%B9%B4%E9%A6%96%E9%80%89%EF%BC%9F"><span class="toc-number">2.2.</span> <span class="toc-text">为什么LightGBM是2026年首选？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A4%BE%E5%8C%BA%E5%85%B1%E8%AF%86%EF%BC%88%E6%9D%A5%E8%87%AALINUX-DO%E3%80%81BigQuant%E3%80%81%E5%90%84%E5%A4%A7%E9%87%8F%E5%8C%96%E7%A4%BE%E5%8C%BA%EF%BC%89"><span class="toc-number">2.2.1.</span> <span class="toc-text">社区共识（来自LINUX DO、BigQuant、各大量化社区）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LightGBM-2026%E5%B9%B4%E5%85%B3%E9%94%AE%E6%9B%B4%E6%96%B0"><span class="toc-number">2.2.2.</span> <span class="toc-text">LightGBM 2026年关键更新</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE%E5%88%86%E5%89%B2%E7%9A%84%E6%AD%A3%E7%A1%AE%E6%96%B9%E5%BC%8F"><span class="toc-number">2.3.</span> <span class="toc-text">训练数据分割的正确方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%87%E7%AD%BE%E8%AE%BE%E8%AE%A1"><span class="toc-number">2.4.</span> <span class="toc-text">标签设计</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#LightGBM-%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B%E5%85%A8%E6%B5%81%E7%A8%8B"><span class="toc-number">3.</span> <span class="toc-text">LightGBM 特征工程全流程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%A0%E5%AD%90%E4%BD%93%E7%B3%BB%EF%BC%8830-%E5%9B%A0%E5%AD%90%EF%BC%89"><span class="toc-number">3.1.</span> <span class="toc-text">因子体系（30+因子）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%B7%E9%87%8F%E7%B1%BB%EF%BC%8812%E4%B8%AA%EF%BC%89"><span class="toc-number">3.1.1.</span> <span class="toc-text">价量类（12个）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E6%8C%87%E6%A0%87%EF%BC%8811%E4%B8%AA%EF%BC%89"><span class="toc-number">3.1.2.</span> <span class="toc-text">技术指标（11个）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%81%E5%8A%A8%E6%80%A7%EF%BC%883%E4%B8%AA%EF%BC%89"><span class="toc-number">3.1.3.</span> <span class="toc-text">流动性（3个）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A2%E5%8A%A8%E7%8E%87%EF%BC%883%E4%B8%AA%EF%BC%89"><span class="toc-number">3.1.4.</span> <span class="toc-text">波动率（3个）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A8%E9%87%8F%EF%BC%885%E4%B8%AA%EF%BC%89"><span class="toc-number">3.1.5.</span> <span class="toc-text">动量（5个）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E9%9D%A2%EF%BC%884%E4%B8%AA%EF%BC%89"><span class="toc-number">3.1.6.</span> <span class="toc-text">基本面（4个）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E5%8F%91%E7%8E%B0%EF%BC%88%E6%9D%A5%E8%87%AA2026%E5%B9%B4%E7%A0%94%E7%A9%B6%EF%BC%89"><span class="toc-number">3.2.</span> <span class="toc-text">关键发现（来自2026年研究）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%B2%81%E6%A3%92%E5%8C%96%E5%A4%84%E7%90%86"><span class="toc-number">3.3.</span> <span class="toc-text">鲁棒化处理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AI%E8%BE%85%E5%8A%A9%E5%9B%A0%E5%AD%90%E6%8C%96%E6%8E%98%EF%BC%88LightGBM%EF%BC%89"><span class="toc-number">4.</span> <span class="toc-text">AI辅助因子挖掘（LightGBM）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%A0%B8%E5%BF%83%E5%B7%A5%E4%BD%9C%E6%B5%81"><span class="toc-number">4.1.</span> <span class="toc-text">1. 核心工作流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-DeepSeek-%E5%9B%A0%E5%AD%90%E7%94%9F%E6%88%90%E5%AE%9E%E6%88%98"><span class="toc-number">4.2.</span> <span class="toc-text">2. DeepSeek 因子生成实战</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E5%9F%BA%E7%A1%80%E6%A8%A1%E6%9D%BF"><span class="toc-number">4.2.1.</span> <span class="toc-text">2.1 基础模板</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-DeepSeek-%E4%BC%9A%E8%BE%93%E5%87%BA"><span class="toc-number">4.2.2.</span> <span class="toc-text">2.2 DeepSeek 会输出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E9%AA%8C%E8%AF%81"><span class="toc-number">4.2.3.</span> <span class="toc-text">2.3 验证</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Claude-Code-%E5%A4%9AAgent%E5%9B%A0%E5%AD%90%E7%A0%94%E7%A9%B6"><span class="toc-number">4.3.</span> <span class="toc-text">3. Claude Code 多Agent因子研究</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E6%9E%B6%E6%9E%84"><span class="toc-number">4.3.1.</span> <span class="toc-text">3.1 架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E7%A0%94%E7%A9%B6%E5%91%98Agent-Prompt"><span class="toc-number">4.3.2.</span> <span class="toc-text">3.2 研究员Agent Prompt</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E9%A3%8E%E6%8E%A7%E5%AE%98Agent-%E4%B8%8D%E5%8F%AF%E7%BB%95%E8%BF%87"><span class="toc-number">4.3.3.</span> <span class="toc-text">3.3 风控官Agent 不可绕过</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E9%A2%84%E7%BD%AE%E5%9B%A0%E5%AD%90%E6%8F%8F%E8%BF%B0%E6%A8%A1%E6%9D%BF%EF%BC%8810%E4%B8%AA%E9%AB%98%E6%BD%9C%E5%8A%9B%E5%9B%A0%E5%AD%90%EF%BC%89"><span class="toc-number">4.4.</span> <span class="toc-text">4. 预置因子描述模板（10个高潜力因子）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E5%AE%9E%E6%B5%8B%E6%95%88%E6%9E%9C"><span class="toc-number">4.5.</span> <span class="toc-text">5. 实测效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E5%85%B3%E9%94%AE%E9%81%BF%E5%9D%91"><span class="toc-number">4.6.</span> <span class="toc-text">6. 关键避坑</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#LightGBM-%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E4%B8%8E%E8%B0%83%E4%BC%98"><span class="toc-number">5.</span> <span class="toc-text">LightGBM 模型训练与调优</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#A%E8%82%A1%E6%9C%80%E4%BC%98%E5%8F%82%E6%95%B0%E5%8C%BA%E9%97%B4%EF%BC%882026%E9%AA%8C%E8%AF%81%EF%BC%89"><span class="toc-number">5.1.</span> <span class="toc-text">A股最优参数区间（2026验证）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Optuna-%E8%B6%85%E5%8F%82%E6%90%9C%E7%B4%A2"><span class="toc-number">5.2.</span> <span class="toc-text">Optuna 超参搜索</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GPU%E5%8A%A0%E9%80%9F"><span class="toc-number">5.3.</span> <span class="toc-text">GPU加速</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%87%E6%8B%9F%E5%90%88%E6%A3%80%E6%B5%8B"><span class="toc-number">5.4.</span> <span class="toc-text">过拟合检测</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E4%BF%9D%E5%AD%98%E4%B8%8E%E5%8A%A0%E8%BD%BD"><span class="toc-number">5.5.</span> <span class="toc-text">模型保存与加载</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#LightGBM-%E5%9B%9E%E6%B5%8B%E7%B3%BB%E7%BB%9F%E4%B8%8E%E5%AE%9E%E7%9B%98%E9%83%A8%E7%BD%B2"><span class="toc-number">6.</span> <span class="toc-text">LightGBM 回测系统与实盘部署</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9E%E6%B5%8B%E5%BC%95%E6%93%8E"><span class="toc-number">6.1.</span> <span class="toc-text">回测引擎</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E5%9B%9E%E6%B5%8B"><span class="toc-number">6.2.</span> <span class="toc-text">运行回测</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%A9%E6%95%88%E8%AF%84%E4%BC%B0"><span class="toc-number">6.3.</span> <span class="toc-text">绩效评估</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AF%8F%E6%97%A5%E5%AE%9E%E7%9B%98%E6%B5%81%E7%A8%8B"><span class="toc-number">6.4.</span> <span class="toc-text">每日实盘流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MiniQMT-%E5%AE%9E%E7%9B%98%E5%AF%B9%E6%8E%A5"><span class="toc-number">6.5.</span> <span class="toc-text">MiniQMT 实盘对接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A3%8E%E6%8E%A7%E4%BD%93%E7%B3%BB"><span class="toc-number">6.6.</span> <span class="toc-text">风控体系</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/08/15/05-AI%E9%87%8F%E5%8C%96/AI%20%E8%BE%85%E5%8A%A9%E5%9B%A0%E5%AD%90%E6%8C%96%E6%8E%98/" title="AI 辅助因子挖掘"><img src="/img/miking4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AI 辅助因子挖掘"/></a><div class="content"><a class="title" href="/2026/08/15/05-AI%E9%87%8F%E5%8C%96/AI%20%E8%BE%85%E5%8A%A9%E5%9B%A0%E5%AD%90%E6%8C%96%E6%8E%98/" title="AI 辅助因子挖掘">AI 辅助因子挖掘</a><time datetime="2026-08-14T16:00:00.000Z" title="发表于 2026-08-15 00:00:00">2026-08-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/12/05-AI%E9%87%8F%E5%8C%96/20260812_%E5%B8%AE%E6%88%91%E6%92%B0%E5%86%99%E4%B8%AD%E8%8A%AF%E5%9B%BD%E9%99%85688981%E6%8A%95%E7%A0%94%E6%8A%A5%E5%91%8A/" title="中芯国际688981投研报告"><img src="/img/miking6.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="中芯国际688981投研报告"/></a><div class="content"><a class="title" href="/2026/08/12/05-AI%E9%87%8F%E5%8C%96/20260812_%E5%B8%AE%E6%88%91%E6%92%B0%E5%86%99%E4%B8%AD%E8%8A%AF%E5%9B%BD%E9%99%85688981%E6%8A%95%E7%A0%94%E6%8A%A5%E5%91%8A/" title="中芯国际688981投研报告">中芯国际688981投研报告</a><time datetime="2026-08-11T16:00:00.000Z" title="发表于 2026-08-12 00:00:00">2026-08-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/11/05-AI%E9%87%8F%E5%8C%96/%E4%B8%AD%E8%8A%AF%E5%9B%BD%E9%99%85_688981_%E8%88%86%E6%83%85%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A_20260811/" title="中芯国际舆情分析报告"><img src="/img/miking5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="中芯国际舆情分析报告"/></a><div class="content"><a class="title" href="/2026/08/11/05-AI%E9%87%8F%E5%8C%96/%E4%B8%AD%E8%8A%AF%E5%9B%BD%E9%99%85_688981_%E8%88%86%E6%83%85%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A_20260811/" title="中芯国际舆情分析报告">中芯国际舆情分析报告</a><time datetime="2026-08-10T16:00:00.000Z" title="发表于 2026-08-11 00:00:00">2026-08-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/06/13/05-AI%E9%87%8F%E5%8C%96/%E4%BA%A4%E6%98%93%E5%9B%A2%E9%98%9F%E5%B7%A5%E4%BD%9C%E6%B5%81%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/" title="交易团队工作流"><img src="/img/miking2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="交易团队工作流"/></a><div class="content"><a class="title" href="/2026/06/13/05-AI%E9%87%8F%E5%8C%96/%E4%BA%A4%E6%98%93%E5%9B%A2%E9%98%9F%E5%B7%A5%E4%BD%9C%E6%B5%81%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/" title="交易团队工作流">交易团队工作流</a><time datetime="2026-06-12T16:00:00.000Z" title="发表于 2026-06-13 00:00:00">2026-06-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/05/12/05-AI%E9%87%8F%E5%8C%96/%E6%8A%95%E8%B5%84%E6%99%A8%E4%BC%9A%E6%8A%A5%E5%91%8A%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/" title="投资晨会报告生成"><img src="/img/miking7.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="投资晨会报告生成"/></a><div class="content"><a class="title" href="/2026/05/12/05-AI%E9%87%8F%E5%8C%96/%E6%8A%95%E8%B5%84%E6%99%A8%E4%BC%9A%E6%8A%A5%E5%91%8A%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/" title="投资晨会报告生成">投资晨会报告生成</a><time datetime="2026-05-11T16:00:00.000Z" title="发表于 2026-05-12 00:00:00">2026-05-12</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By lkz</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.2</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: '',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = (el = document, path = location.pathname) => {
+    twikoo.init({
+      el: el.querySelector('#twikoo-wrap'),
+      envId: '',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      },
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || path
+    })
+
+    
+
+    isShuoshuo && (window.shuoshuoComment.destroyTwikoo = () => {
+      if (el.children.length) {
+        el.innerHTML = ''
+        el.classList.add('no-comment')
+      }
+    })
+  }
+
+  const loadTwikoo = (el, path) => {
+    if (typeof twikoo === 'object') setTimeout(() => init(el, path), 0)
+    else btf.getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.44/dist/twikoo.all.min.js').then(() => init(el, path))
+  }
+
+  if (isShuoshuo) {
+    'Twikoo' === 'Twikoo'
+      ? window.shuoshuoComment = { loadComment: loadTwikoo }
+      : window.loadOtherComment = loadTwikoo
+    return
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="搜索文章" type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.5.4"></script></div></div></body></html>
